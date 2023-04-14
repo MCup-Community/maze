@@ -1,0 +1,5 @@
+name: Maze
+version: '${project.version}'
+main: mcup.gamemode.maze.Maze
+api-version: 1.19
+depend: [ Core ]
