@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class PlayerListener implements Listener {
 
@@ -34,7 +35,7 @@ public class PlayerListener implements Listener {
 
     if (event.getPlayer().getInventory().getItemInMainHand().getType() == Material.DIAMOND_HORSE_ARMOR) {
       plugin.storage.scrollTeleport(event.getPlayer());
-      event.getPlayer().getInventory().remove(event.getPlayer().getInventory().getItemInMainHand());
+      event.getPlayer().getInventory().setItemInMainHand(new ItemStack(Material.AIR));
       event.setCancelled(true);
     }
 

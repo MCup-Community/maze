@@ -6,6 +6,7 @@ import mcup.gamemode.maze.loottables.Diamond;
 import mcup.gamemode.maze.loottables.Gold;
 import mcup.gamemode.maze.loottables.Iron;
 import mcup.gamemode.maze.loottables.LootTable;
+import org.bukkit.ChatColor;
 import org.bukkit.EntityEffect;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -44,12 +45,14 @@ public class Storage {
   }
 
   public void scrollTeleport(Player player) {
-
-    // player.teleport()
+    player.teleport(plugin.getConfig().getLocation("center.location"));
     player.playEffect(EntityEffect.TOTEM_RESURRECT);
+    player.sendMessage(chatPrefix + "Вы были телепортированы в центр лабиринта");
   }
 
   public HashMap<Material, LootTable> lootBoxes = new HashMap<>();
+
+  public String chatPrefix = "[" + ChatColor.GREEN + "" + ChatColor.BOLD + "Лабиринт" + ChatColor.RESET + "] ";
 
   protected Maze plugin;
   public Storage(Maze plugin_) {
