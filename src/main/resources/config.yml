@@ -1,3 +1,7 @@
 center:
   radius: 15
   height: 3
+value:
+  iron_ingot: 1
+  gold_ingot: 7
+  diamond: 50
