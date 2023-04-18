@@ -24,8 +24,8 @@ public class SpeedBoots extends LootItem {
     leatherArmorMeta.setLore(Arrays.asList(
       ChatColor.GRAY + "Ускоряют игрока",
       "",
-      ChatColor.GRAY + "Что за что за тяги, бархатные тяги",
-      ChatColor.GRAY + "Ребята что за тяги, тяга кефтеме"
+      ChatColor.GRAY + "" + ChatColor.ITALIC + "Что за что за тяги, бархатные тяги",
+      ChatColor.GRAY + "" + ChatColor.ITALIC + "Ребята что за тяги, тяга кефтеме"
     ));
 
     leatherArmorMeta.setColor(Color.GREEN);

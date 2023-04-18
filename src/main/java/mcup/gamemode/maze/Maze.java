@@ -5,6 +5,7 @@ import mcup.core.StageManager;
 import mcup.core.stages.Waiting;
 import mcup.gamemode.maze.listeners.PlayerListener;
 import mcup.gamemode.maze.stages.Countdown;
+import mcup.gamemode.maze.stages.Ending;
 import mcup.gamemode.maze.stages.Hunt;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,7 +35,8 @@ public final class Maze extends JavaPlugin {
           new StageManager(core, this, new ArrayList<>(Arrays.asList(
             Waiting.class,
             Countdown.class,
-            Hunt.class
+            Hunt.class,
+            Ending.class
           )))
         );
 

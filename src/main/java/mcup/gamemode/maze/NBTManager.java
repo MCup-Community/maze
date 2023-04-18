@@ -21,6 +21,18 @@ public class NBTManager {
     return nbtItem.getItem();
   }
 
+
+  public static ItemStack setCanPlaceOnTag(ItemStack item, ArrayList<Material> materialList) {
+
+    NBTItem nbtItem = new NBTItem(item);
+    NBTList<String> canDestroyList = nbtItem.getStringList("CanPlaceOn");
+
+    for (Material material : materialList)
+      canDestroyList.add("minecraft:" + material.name().toLowerCase());
+
+    return nbtItem.getItem();
+  }
+
   public static ItemStack setTag(ItemStack item, String tag, String tagValue) {
 
     NBTItem nbtItem = new NBTItem(item);

@@ -11,8 +11,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityPortalEnterEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerListener implements Listener {
@@ -59,8 +62,25 @@ public class PlayerListener implements Listener {
   @EventHandler
   public void onPlayerPortal(EntityPortalEnterEvent event) {
 
-    if (event.getEntity() instanceof Player && ((Player) event.getEntity()).getGameMode() != GameMode.SPECTATOR)
+    if (event.getEntity() instanceof Player && ((Player) event.getEntity()).getGameMode() != GameMode.SPECTATOR
+        && plugin.core.stageManager.getCurrentStage() instanceof Hunt)
       plugin.storage.finishPlayer((Player)event.getEntity());
+  }
+
+  @EventHandler
+  public void onPlayerAttack(EntityDamageByEntityEvent event) {
+    if (event.getDamager() instanceof Player)
+      event.setCancelled(true);
+  }
+
+  @EventHandler
+  public void onPlayerRespawn(PlayerRespawnEvent event) {
+    event.getPlayer().teleport(plugin.getConfig().getLocation("center.location"));
+  }
+
+  @EventHandler
+  public void onPlayerPortalEnter(PlayerPortalEvent event) {
+    event.setCancelled(true);
   }
 
   protected Maze plugin;

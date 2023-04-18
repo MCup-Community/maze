@@ -2,7 +2,7 @@ package mcup.gamemode.maze.loot;
 
 import mcup.gamemode.maze.Maze;
 import mcup.gamemode.maze.NBTManager;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -29,6 +29,7 @@ public class MagicClock extends LootItem {
 
     itemStack.setItemMeta(itemMeta);
     itemStack = NBTManager.setTag(itemStack, "magicClock", "true");
+    itemStack = NBTManager.setTag(itemStack, "clockId", "" + System.currentTimeMillis());
 
     player.getInventory().addItem(itemStack);
   }

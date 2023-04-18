@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class WallShears extends LootItem {
@@ -21,6 +22,14 @@ public class WallShears extends LootItem {
     Damageable itemMeta = (Damageable) itemStack.getItemMeta();
 
     itemMeta.setDamage(Material.SHEARS.getMaxDurability() - 2);
+
+    itemMeta.setLore(Arrays.asList(
+      org.bukkit.ChatColor.RESET + "" + org.bukkit.ChatColor.GRAY + "Листорезы - режут листья",
+      org.bukkit.ChatColor.RESET + "" + org.bukkit.ChatColor.GRAY + "Но их хватит лишь на маленькую дырочку!"
+    ));
+
+    itemMeta.setDisplayName(displayName);
+
     itemStack.setItemMeta(itemMeta);
 
     itemStack = NBTManager.setCanDestroyTag(itemStack, new ArrayList<>(Collections.singleton(plugin.storage.mazeWallMaterial)));

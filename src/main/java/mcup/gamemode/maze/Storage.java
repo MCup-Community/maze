@@ -5,7 +5,7 @@ import mcup.gamemode.maze.loottables.Diamond;
 import mcup.gamemode.maze.loottables.Gold;
 import mcup.gamemode.maze.loottables.Iron;
 import mcup.gamemode.maze.loottables.LootTable;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -22,11 +23,12 @@ public class Storage {
 
   }
 
-  public void giveDefaultEquipment(Player player) {
-    giveAxe(player);
+  public void giveDefaultEquipment(String playerName) {
+    giveAxe(playerName);
+    giveMarkers(playerName);
   }
 
-  public void giveAxe(Player player) {
+  public void giveAxe(String playerName) {
 
     ItemStack axe = new ItemStack(Material.IRON_AXE, 1);
     axe.addEnchantment(Enchantment.DIG_SPEED, 2);
@@ -36,7 +38,33 @@ public class Storage {
 
     axe.setItemMeta(itemMeta);
 
-    player.getInventory().addItem(NBTManager.setCanDestroyTag(axe, new ArrayList<>(lootBoxes.keySet())));
+    ArrayList <ItemStack> items = new ArrayList<>();
+    items.add(NBTManager.setCanDestroyTag(axe, new ArrayList<>(lootBoxes.keySet())));
+
+    plugin.core.apiManager.playerManager.givePlayerItems(items, playerName);
+  }
+
+  public void giveMarkers(String playerName) {
+
+    ItemStack marker = new ItemStack(Material.TORCH, 64);
+
+    ItemMeta itemMeta = marker.getItemMeta();
+
+    itemMeta.setDisplayName("Маркер");
+
+    itemMeta.setLore(Arrays.asList(
+      org.bukkit.ChatColor.GRAY + "Используйте, чтобы отслеживать свой путь!"
+    ));
+
+    marker.setItemMeta(itemMeta);
+
+    marker = NBTManager.setCanPlaceOnTag(marker, new ArrayList<>(Arrays.asList(mazeWallMaterial, mazeFloowMaterial)));
+
+    ArrayList <ItemStack> items = new ArrayList<>();
+    items.add(marker);
+
+    plugin.core.apiManager.playerManager.givePlayerItems(items, playerName);
+
   }
 
   public void scrollTeleport(Player player) {
@@ -100,12 +128,11 @@ public class Storage {
       int valuableScore = count * valuablePrice;
       totalScore += valuableScore;
 
-      message += padding + ChatColor.BOLD + valuables.get(valuable) + ChatColor.RESET + " [x" + count + "] * " + valuablePrice + " = " + valuableScore;
-
+      message += padding + ChatColor.BOLD + "" + ChatColor.YELLOW + valuables.get(valuable) + ChatColor.RESET + " [x" + count + "] * " + valuablePrice + " = " + ChatColor.YELLOW + valuableScore + ChatColor.RESET;
     }
 
     player.getInventory().clear();
-    message += padding + ChatColor.BOLD + "" + ChatColor.YELLOW + "Итого: " + totalScore;
+    message += padding + ChatColor.BOLD + "" + ChatColor.GOLD + "" + ChatColor.UNDERLINE + "Итого: " + totalScore;
 
     player.sendMessage(message);
     plugin.core.apiManager.scoreManager.addScorePlayer(player.getName(), totalScore, "Собраны сокровища лабиринта");
@@ -126,6 +153,8 @@ public class Storage {
     lootBoxes.put(Material.MANGROVE_PLANKS, new Iron(plugin));
     lootBoxes.put(Material.JUNGLE_PLANKS, new Gold(plugin));
     lootBoxes.put(Material.ACACIA_PLANKS, new Diamond(plugin));
+
+    Bukkit.getWorld("world").setGameRule(GameRule.KEEP_INVENTORY, true);
   }
 
 }

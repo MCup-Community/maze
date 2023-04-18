@@ -1,6 +1,7 @@
 package mcup.gamemode.maze.loottables;
 
 import mcup.gamemode.maze.Maze;
+import mcup.gamemode.maze.loot.SpeedBoots;
 import mcup.gamemode.maze.loot.VanilaItem;
 import mcup.gamemode.maze.loot.WallShears;
 import org.bukkit.Material;
@@ -14,8 +15,9 @@ public class Iron extends LootTable {
     super(plugin_);
 
     table = new ArrayList<>(Arrays.asList(
-      new TableEntry(new VanilaItem(plugin, 7, 10, Material.IRON_INGOT), 95),
-      new TableEntry(new WallShears(plugin), 5)
+      new TableEntry(new VanilaItem(plugin, 7, 10, Material.IRON_INGOT), 90),
+      new TableEntry(new WallShears(plugin), 5),
+      new TableEntry(new SpeedBoots(plugin), 5)
     ));
   }
 }
