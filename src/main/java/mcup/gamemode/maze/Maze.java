@@ -2,6 +2,7 @@ package mcup.gamemode.maze;
 
 import mcup.core.Core;
 import mcup.core.StageManager;
+import mcup.core.stages.Cutscene;
 import mcup.core.stages.Waiting;
 import mcup.gamemode.maze.listeners.PlayerListener;
 import mcup.gamemode.maze.stages.Countdown;
@@ -34,6 +35,7 @@ public final class Maze extends JavaPlugin {
         core.registerStageManager(
           new StageManager(core, this, new ArrayList<>(Arrays.asList(
             Waiting.class,
+            Cutscene.class,
             Countdown.class,
             Hunt.class,
             Ending.class

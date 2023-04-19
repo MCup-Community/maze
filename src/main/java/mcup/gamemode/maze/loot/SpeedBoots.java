@@ -1,7 +1,7 @@
 package mcup.gamemode.maze.loot;
 
 import mcup.gamemode.maze.Maze;
-import mcup.gamemode.maze.NBTManager;
+import mcup.core.NBTManager;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;

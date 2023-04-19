@@ -3,7 +3,7 @@ package mcup.gamemode.maze.stages;
 import mcup.core.Core;
 import mcup.core.stages.GamemodeStage;
 import mcup.gamemode.maze.Maze;
-import mcup.gamemode.maze.NBTManager;
+import mcup.core.NBTManager;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -58,7 +58,7 @@ public class Hunt extends GamemodeStage {
       else {
         core.apiManager.playerManager.sendTitle(
           ChatColor.YELLOW + "" + getSecondsLeft(),
-          (getSecondsLeft() == 10 ? " секунд до закрытия лабиринта!" : ""),
+          (getSecondsLeft() >= 10 ? " секунд до закрытия лабиринта!" : ""),
           0,
           20,
           0,

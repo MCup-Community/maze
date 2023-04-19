@@ -1,9 +1,8 @@
 package mcup.gamemode.maze.listeners;
 
 import mcup.gamemode.maze.Maze;
-import mcup.gamemode.maze.NBTManager;
+import mcup.core.NBTManager;
 import mcup.gamemode.maze.stages.Hunt;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

@@ -1,5 +1,6 @@
 package mcup.gamemode.maze;
 
+import mcup.core.NBTManager;
 import mcup.core.local.data.Team;
 import mcup.gamemode.maze.loottables.Diamond;
 import mcup.gamemode.maze.loottables.Gold;
